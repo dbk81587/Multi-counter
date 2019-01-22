@@ -1,0 +1,33 @@
+.counter {
+    height: 300px;
+    width: 300px;
+    
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.counter-display {
+    height: 150px;
+}
+
+.counter-panel {
+    height: 100px;
+}
+
+.btn {
+    border-radius: 0 !important;
+    cursor: pointer;
+    box-shadow: none !important;
+}
+
+.counter-title {
+    height: 50px;
+    width: 300px;
+    font-weight: 500;
+    font-size: 20px;
+    border: none;
+}
+
+.title-input {
+    text-align: center;
+}
