@@ -15,10 +15,12 @@ export const reset = (index) => ({
     index
 });
 
-export const create = () => ({
-    type: types.CREATE
+export const counterremove = (index) => ({
+    type: types.COUNTERREMOVE,
+    index
 });
 
-export const remove = () => ({
-    type: types.REMOVE
+export const create = (title) => ({
+    type: types.CREATE,
+    title
 });

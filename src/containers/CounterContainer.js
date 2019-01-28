@@ -7,6 +7,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    onCounterremove: (index) => dispatch(actions.counterremove(index)),
     onIncrement: (index) => dispatch(actions.increment(index)),
     onReset: (index) => dispatch(actions.reset(index)),
     onDecrement: (index) => dispatch(actions.decrement(index))

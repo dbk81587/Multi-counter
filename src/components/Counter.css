@@ -29,5 +29,39 @@
 }
 
 .title-input {
+    position: relative;
     text-align: center;
+    padding: 10px 0;
+}
+
+.counterremove {
+    display: flex;
+    position: absolute;
+    justify-content: flex-end;
+    right: 10px;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    margin: 0 -5px;
+    padding: 0;
+    cursor: pointer;
+    color: gray;
+}
+
+.counterremove:hover, .countermodify:hover {
+    color: #D44E4E;
+}
+
+.countermodify {
+    display: flex;
+    position: absolute;
+    justify-content: flex-start;
+    left: 10px;
+    background: none;
+    border: 0;
+    box-shadow: none;
+    margin: 0 -5px;
+    padding: 0;
+    cursor: pointer;
+    color: gray;
 }

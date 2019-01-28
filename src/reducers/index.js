@@ -3,7 +3,8 @@ import * as types from '../actions/ActionTypes';
 const initialState = {
     counters: [
         {
-            countNumber: 0
+            countNumber: 0,
+            title: ''
         }
     ]
 };
@@ -15,19 +16,24 @@ function counter(state = initialState, action) {
             return {
                 counters: [
                     ...counters, {
-                        countNumber: 0
+                        countNumber: 0,
+                        title: action.title
                     }
                 ]
             };
-        case types.REMOVE:
+        case types.COUNTERREMOVE:
             return {
-                counters: counters.slice(0, counters.length - 1)
+                counters: [
+                    ...counters.slice(0, action.index),
+                    ...counters.slice(action.index+1, counters.length)
+                ]
             };
-       case types.INCREMENT:
+        case types.INCREMENT:
             return {
                 counters: [
                     ...counters.slice(0, action.index), {
-                        countNumber: counters[action.index].countNumber + 1
+                        ...counters[action.index],
+                        countNumber: counters[action.index].countNumber + 1,
                     },
                     ...counters.slice(action.index+1, counters.length)
                 ]
@@ -36,6 +42,7 @@ function counter(state = initialState, action) {
             return {
                 counters: [
                     ...counters.slice(0, action.index), {
+                        ...counters[action.index],
                         countNumber: 0
                     },
                     ...counters.slice(action.index+1, counters.length)
@@ -45,6 +52,7 @@ function counter(state = initialState, action) {
             return {
                 counters: [
                     ...counters.slice(0, action.index), {
+                        ...counters[action.index],
                         countNumber: counters[action.index].countNumber - 1
                     },
                     ...counters.slice(action.index+1, counters.length)
@@ -54,5 +62,6 @@ function counter(state = initialState, action) {
             return state;
     }
 };
+
 
 export default counter;
