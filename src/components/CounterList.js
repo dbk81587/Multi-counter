@@ -2,13 +2,14 @@ import React from 'react';
 import Counter from './Counter';
 import PropTypes from 'prop-types';
 
-const CounterList = ({counters, onCounterremove, onIncrement, onReset, onDecrement}) => {
+const CounterList = ({counters, onModify, onCounterremove, onIncrement, onReset, onDecrement}) => {
     const counterList = counters.map(
         (counter, i) => (
             <Counter 
                 key={i}
                 index={i}
                 {...counter}
+                onModify={onModify}
                 onCounterremove={onCounterremove}
                 onIncrement={onIncrement}
                 onReset={onReset}
@@ -29,6 +30,7 @@ CounterList.propTypes = {
         countNumber: PropTypes.number,
         title: PropTypes.string
     })),
+    onModify: PropTypes.func,
     onCounterremove: PropTypes.func,
     onIncrement: PropTypes.func,
     onDecrement: PropTypes.func,
@@ -37,6 +39,7 @@ CounterList.propTypes = {
 
 CounterList.defaultProps = {
     counters: [],
+    onModify: () => console.warn('onModify not defined'),
     onCounterremove: () => console.warn('onCounterremove not defined'),
     onIncrement: () => console.warn('onIncrement not defined'),
     onDecrement: () => console.warn('onDecrement not defined'),

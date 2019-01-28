@@ -24,3 +24,9 @@ export const create = (title) => ({
     type: types.CREATE,
     title
 });
+
+export const modify = (index, title) => ({
+    type: types.MODIFY,
+    index,
+    title
+});

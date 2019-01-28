@@ -12,7 +12,17 @@ const initialState = {
 function counter(state = initialState, action) {
     const {counters} = state;
     switch (action.type) {
-       case types.CREATE:
+        case types.MODIFY:
+            return {
+                counters: [
+                    ...counters.slice(0, action.index), {
+                        ...counters[action.index],
+                        title: action.title
+                    },
+                    ...counters.slice(action.index+1, counters.length)
+                ]
+            }
+        case types.CREATE:
             return {
                 counters: [
                     ...counters, {

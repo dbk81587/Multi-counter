@@ -2,14 +2,34 @@ import React from 'react';
 import './Counter.css';
 import PropTypes from 'prop-types';
 
-const Counter = ({ index, title, onCounterremove, countNumber, onIncrement, onReset, onDecrement }) => {
+const Counter = ({ index, title, onModify, onCounterremove, countNumber, onIncrement, onReset, onDecrement }) => {
+    let input;
+    let form;
+    let para
+    const toggleModify = () => {
+        if (form.className === 'd-none') {
+            form.className = 'd-block';
+            input.focus();
+            input.value = title;
+            para.className = 'd-none';
+        }
+        else {
+            form.className = 'd-none';
+            para.className = 'd-block';
+        }
+    }
     return (
             <div className="mt-5 counter border border-secondary rounded">
                 <div className="title-input text-white counter-title bg-info d-flex justify-content-center">
-                    <div>{title}</div>
+                    <div><p className="d-block" ref={node => para = node}>{title}</p><form ref={node => form = node} className="d-none" onSubmit={ e=> {
+                        e.preventDefault()
+                        onModify(index, input.value)
+                        toggleModify()
+                        }}>
+                        <input className="modify-input" maxlength="25" ref={node => input = node} /></form></div>
                     <div>
-                        <button className="counterremove" onClick={ () => onCounterremove(index) }><i class="far fa-trash-alt"></i></button>
-                        <button className="countermodify"><i class="fas fa-pen"></i></button>
+                        <button className="btn countermodify" onClick={ () => toggleModify() }><i class="fas fa-pen"></i></button>
+                        <button className="btn counterremove" onClick={ () => onCounterremove(index) }><i class="far fa-trash-alt"></i></button>
                     </div>
                 </div>
                     <div className="counter-display d-flex align-items-center bg-light text-secondary">                        
@@ -33,6 +53,7 @@ const Counter = ({ index, title, onCounterremove, countNumber, onIncrement, onRe
 Counter.propTypes = {
     countNumber: PropTypes.number,
     title: PropTypes.string,
+    onModify: PropTypes.func,
     onCounterremove: PropTypes.func,
     onIncrement: PropTypes.func,
     onReset: PropTypes.func,
@@ -42,6 +63,7 @@ Counter.propTypes = {
 Counter.defaultProps = {
     countNumber: 0,
     title: '',
+    onModify: () => console.warn('onModify not defined'),
     onCounterremove: () => console.warn('onCounterremove not defined'),
     onIncrement: () => console.warn('onIncrement not defined'),
     onReset: () => console.warn('onReset not defined'),
